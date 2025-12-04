@@ -1,8 +1,10 @@
 def day_one_main():
     input = get_input(file_path = 'inputs/day_one_input.txt')
-    print(decipher_lock(combination = input))
+    print(f'day one part one: {decipher_lock_pt_1(combination = input)}')
+    print(f'day one part two: {decipher_lock_pt_2(combination = input)}')
+    
 
-def decipher_lock(combination: list[str]) -> int:
+def decipher_lock_pt_1(combination: list[str]) -> int:
     combo: int = 0
     position: int = 50
     num_positions: int = 100
@@ -17,6 +19,31 @@ def decipher_lock(combination: list[str]) -> int:
 
         if position == 0:
             combo += 1
+    return combo
+
+def decipher_lock_pt_2(combination: list[str]) -> int:
+    combo: int = 0
+    position: int = 50
+    num_positions: int = 100
+    rotation: str
+    for rotation in combination:
+        direction: str = rotation[0]
+        distance: int = int(rotation[1:])
+        num_full_rotations = distance // num_positions
+        distance = distance % num_positions
+        combo += num_full_rotations
+        position_crosses_zero = False
+        if direction == 'L':
+            position = 100 if position == 0 else position
+            position = (position - distance)
+            position_crosses_zero = position <= 0
+            position = position % num_positions
+        else:
+            position = (position + distance)
+            position_crosses_zero = position >= num_positions
+            position = position % num_positions    
+        if position_crosses_zero:
+            combo += 1        
     return combo
 
 def get_input(file_path: str) -> list[str]:
