@@ -5,52 +5,52 @@ def day_two_main():
     input = get_input(file_path = 'inputs/day_two_input.csv')
     print(f'input: {input}')
 
-def get_invalid_ids(data_ranges):
+def get_invalid_ids(data_ranges: list[str]):
     invalid_ids = []
     print(f'data_ranges: {data_ranges}')
     for range in data_ranges:
         range_bounds = range.split('-')
         if len(range_bounds) != 2:
-            print(f'len of range bounds: {len(range_bounds)}')
             continue
-        invalid_ids.append(get_invalid_ids_by_range(start=range_bounds[0], end=range_bounds[1]))
+        invalid_ids.extend(get_invalid_ids_by_range(start=int(range_bounds[0]), end=int(range_bounds[1])))
 
     return invalid_ids
 
-def get_invalid_ids_by_range(start: str, end: str):
+def get_invalid_ids_by_range(start: int, end: int):
     print(f'getting invalid ids for range {start} - {end}')
-    if int(start) > int(end):
+    if start > end:
         temp_start = start
         start = end
         end = temp_start
     invalid_ids = []
-    if len(start) == len(end) and len(start) % 2 != 0:
-        print(f'return []')
+    start_str = str(start)
+    end_str = str(end)
+    if len(start_str) == len(end_str) and len(start_str) % 2 != 0:
         return []
-    if len(start) == len(end) and len(start) % 2 == 0:
-        invalid_ids = list(int(id) for id in range(int(start), int(end) + 1) if not id_is_valid(str(id)))
+    if len(start_str) == len(end_str) and len(start_str) % 2 == 0:
+        invalid_ids = list(int(id) for id in range(start, end + 1) if not id_is_valid(id))
         print(f'invalid ids: {invalid_ids}')
         return invalid_ids
     invalid_ids = []
-    id = start
+    id:int = start
 
-    while int(id) <= int(end):
-        print(f'current id: {id}')
-        if len(id) % 2 != 0:
-            new_id = '1' + '0'*len(id)
-            print(f'jumping from {id} to {new_id}')
-            id = new_id
+    while id <= end:
+        id_str = str(id)
+        if len(id_str) % 2 != 0:
+            new_id_str = '1' + '0'*len(id_str)
+            print(f'jumping from {id_str} to {new_id_str}')
+            id = int(new_id_str)
             continue
         if not id_is_valid(id): invalid_ids.append(id)
-        id = str(int(id) + 1)
+        id = id + 1
     print(f'returning {invalid_ids}')
     return invalid_ids
 
-def id_is_valid(id: str):
-    print(f'checking id: {id}')
-    if len(id)%2 != 0:
+def id_is_valid(id: int):
+    id_str = str(id)
+    if len(id_str)%2 != 0:
         return True
-    center_index: int = (len(id) // 2)
-    left = id[:center_index]
-    right = id[center_index:]
+    center_index: int = (len(id_str) // 2)
+    left = id_str[:center_index]
+    right = id_str[center_index:]
     return left != right 
