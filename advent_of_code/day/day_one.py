@@ -1,3 +1,6 @@
+from advent_of_code.helper_files.io_operations import get_input
+
+
 def day_one_main():
     input = get_input(file_path = 'inputs/day_one_input.txt')
     print(f'day one part one: {decipher_lock_pt_1(combination = input)}')
@@ -45,7 +48,3 @@ def decipher_lock_pt_2(combination: list[str]) -> int:
         if position_crosses_zero:
             combo += 1        
     return combo
-
-def get_input(file_path: str) -> list[str]:
-     with open(file_path) as input_file:
-          return input_file.readlines()

@@ -7,7 +7,7 @@ class DayOneTests(TestCase):
 
     def test_decipher_lock_pt_1(self):
         dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
-        file_path = os.path.join(dir_path, 'day_one_test.txt')
+        file_path = os.path.join(dir_path, 'day_one_test_input.txt')
         with open(file_path) as f:
             input_data = f.readlines()
         combo = decipher_lock_pt_1(input_data)
@@ -15,7 +15,7 @@ class DayOneTests(TestCase):
 
     def test_decipher_lock_pt_2(self):
         dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
-        file_path = os.path.join(dir_path, 'day_one_test.txt')
+        file_path = os.path.join(dir_path, 'day_one_test_input.txt')
         with open(file_path) as f:
             input_data = f.readlines()
         combo = decipher_lock_pt_2(input_data)
