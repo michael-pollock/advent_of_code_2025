@@ -61,11 +61,9 @@ def id_sections_are_unique(id: int):
         section_lengths.append(i)
     section_lengths.sort(reverse=True)
     for length in section_lengths:
-        sections = []
         section_to_match = id_str[:length]
         has_unique_section = False
-        for i in range(0, len(id_str), length):
-            sections.append(id_str[i:i+length])
+        for i in range(length, len(id_str), length):
             if section_to_match != id_str[i:i+length]:
                 has_unique_section = True
                 break
