@@ -53,7 +53,6 @@ def id_halfs_are_unique(id: int):
     return left != right 
 
 def id_sections_are_unique(id: int):
-    print(f'running for {id}')
     id_str = str(id)
     section_lengths = []
     for i in range(len(id_str) // 2 + 1):
@@ -61,19 +60,16 @@ def id_sections_are_unique(id: int):
         if len(id_str) % i != 0: continue
         section_lengths.append(i)
     section_lengths.sort(reverse=True)
-    print(f'possible section lengths: {section_lengths}')
     for length in section_lengths:
         sections = []
-        prev_section = None
-        prev_section_matches = False
+        section_to_match = id_str[:length]
+        has_unique_section = False
         for i in range(0, len(id_str), length):
             sections.append(id_str[i:i+length])
-            if prev_section != id_str[i:i+length]:
-                prev_section = id_str[i:i+length]
-                continue
-            prev_section_matches = True
-        print(f'sections: {sections}')
-        if prev_section_matches: 
+            if section_to_match != id_str[i:i+length]:
+                has_unique_section = True
+                break
+        if not has_unique_section: 
             return False
     return True
 

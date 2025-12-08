@@ -50,6 +50,9 @@ class DayTwoTests(TestCase):
         self.assertFalse(id_sections_are_unique(2121))
         self.assertFalse(id_sections_are_unique(21032103))
         self.assertTrue(id_sections_are_unique(1234567123456))
+        self.assertTrue(id_sections_are_unique(110))
+        self.assertTrue(id_sections_are_unique(112))
+        self.assertTrue(id_sections_are_unique(1234567123456))
 
     def test_get_repeating_id_sections_by_range(self):
         self.assertListEqual([11, 22], get_repeating_id_sections_by_range(start=11, end=22))
@@ -68,7 +71,14 @@ class DayTwoTests(TestCase):
         input_data = get_csv_input(file_path)
         invalid_ids = get_repeating_id_sections(input_data)
         expected_invalid_ids = [
-            11, 22, 99, 1010, 1188511885, 222222, 446446, 38593859
+            11, 22, 99, 111, 999, 1010, 1188511885, 222222, 446446, 38593859, 565656, 824824824, 2121212121
         ]
         self.assertEqual(expected_invalid_ids, invalid_ids)
+
+    def test_get_repeating_id_sections_sum_is_correct(self):
+        dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
+        file_path = os.path.join(dir_path, 'day_two_test_input.csv')
+        input_data = get_csv_input(file_path)
+        invalid_ids = get_repeating_id_sections(input_data)
+        self.assertEqual(4174379265, sum(invalid_ids))
 
