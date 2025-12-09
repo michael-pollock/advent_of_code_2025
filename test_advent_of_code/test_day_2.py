@@ -1,11 +1,11 @@
 from unittest import TestCase
 import os
-from advent_of_code.day.day_two import get_repeating_id_halfs, get_repeating_id_halfs_by_range, \
+from advent_of_code.day.day_2 import get_repeating_id_halfs, get_repeating_id_halfs_by_range, \
     get_repeating_id_sections, get_repeating_id_sections_by_range, id_halfs_are_unique, id_sections_are_unique
 from advent_of_code.helper_files.io_operations import get_csv_input
 
 
-class DayTwoTests(TestCase):
+class Day2Tests(TestCase):
 
     def test_id_halfs_are_unique(self):
         self.assertTrue(id_halfs_are_unique(21))
@@ -28,7 +28,7 @@ class DayTwoTests(TestCase):
 
     def test_get_repeating_id_halfs(self):
         dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
-        file_path = os.path.join(dir_path, 'day_two_test_input.csv')
+        file_path = os.path.join(dir_path, 'day_2_test_input.csv')
         input_data = get_csv_input(file_path)
         invalid_ids = get_repeating_id_halfs(input_data)
         expected_invalid_ids = [
@@ -67,7 +67,7 @@ class DayTwoTests(TestCase):
 
     def test_get_repeating_id_sections(self):
         dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
-        file_path = os.path.join(dir_path, 'day_two_test_input.csv')
+        file_path = os.path.join(dir_path, 'day_2_test_input.csv')
         input_data = get_csv_input(file_path)
         invalid_ids = get_repeating_id_sections(input_data)
         expected_invalid_ids = [
@@ -77,7 +77,7 @@ class DayTwoTests(TestCase):
 
     def test_get_repeating_id_sections_sum_is_correct(self):
         dir_path = os.path.join(os.path.dirname(__file__), 'test_helpers')
-        file_path = os.path.join(dir_path, 'day_two_test_input.csv')
+        file_path = os.path.join(dir_path, 'day_2_test_input.csv')
         input_data = get_csv_input(file_path)
         invalid_ids = get_repeating_id_sections(input_data)
         self.assertEqual(4174379265, sum(invalid_ids))

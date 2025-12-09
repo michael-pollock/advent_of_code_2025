@@ -1,8 +1,8 @@
 from advent_of_code.helper_files.io_operations import get_csv_input
 
 
-def day_two_main(): 
-    input = get_csv_input(file_path = 'inputs/day_two_input.csv')
+def day_2_main(): 
+    input = get_csv_input(file_path = 'inputs/day_2_input.csv')
     invalid_ids = get_repeating_id_halfs(input)
     print(f'Day two part one: sum of invalid ids: {sum(invalid_ids)}')
     invalid_ids = get_repeating_id_sections(input)

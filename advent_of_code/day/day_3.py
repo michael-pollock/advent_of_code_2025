@@ -1,8 +1,8 @@
 from advent_of_code.helper_files.io_operations import get_input
 
 
-def day_three_main():
-    joltage_banks = get_input(file_path = 'inputs/day_three_input.txt')
+def day_3_main():
+    joltage_banks = get_input(file_path = 'inputs/day_3_input.txt')
     joltages = []
     unsafe_joltages = []
     for bank in joltage_banks:

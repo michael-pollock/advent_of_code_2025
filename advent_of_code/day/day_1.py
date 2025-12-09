@@ -1,8 +1,8 @@
 from advent_of_code.helper_files.io_operations import get_input
 
 
-def day_one_main():
-    input = get_input(file_path = 'inputs/day_one_input.txt')
+def day_1_main():
+    input = get_input(file_path = 'inputs/day_1_input.txt')
     print(f'Day one part one: {decipher_lock_pt_1(combination = input)}')
     print(f'Day one part two: {decipher_lock_pt_2(combination = input)}')
     
