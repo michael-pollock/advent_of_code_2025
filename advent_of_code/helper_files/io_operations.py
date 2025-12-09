@@ -1,6 +1,7 @@
 def get_input(file_path: str) -> list[str]:
      with open(file_path, 'r') as input_file:
-          return input_file.readlines()
+          lines = input_file.read().splitlines()
+          return lines
      
 def get_csv_input(file_path: str) -> list[str]:
      import csv
